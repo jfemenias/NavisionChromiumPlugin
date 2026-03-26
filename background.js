@@ -48,6 +48,7 @@ async function handleAutoDownload(tabUrl) {
         await saveToStorage('lastDownloadedTime', now);
 
         downloadJson(processedData);
+        downloadCsv(processedData);
     } catch (error) {
         console.error('Autodownload Error:', error);
     }
@@ -100,6 +101,31 @@ function downloadJson(data) {
             setTimeout(() => {
                 chrome.downloads.erase({ id: downloadId });
             }, 2000); // Wait a bit for the download to finish before erasing
+        }
+    });
+}
+
+function downloadCsv(data) {
+    const headers = Object.keys(data).join(',');
+    const row = Object.values(data).map(val => {
+        const stringVal = (val || "").toString();
+        return `"${stringVal.replace(/"/g, '""')}"`;
+    }).join(',');
+    const csvContent = `${headers}\n${row}`;
+
+    const base64 = btoa(unescape(encodeURIComponent(csvContent)));
+    const url = `data:text/csv;base64,${base64}`;
+    const filename = `${data.key || 'issue'}.csv`;
+
+    chrome.downloads.download({
+        url: url,
+        filename: filename,
+        saveAs: false
+    }, (downloadId) => {
+        if (downloadId) {
+            setTimeout(() => {
+                chrome.downloads.erase({ id: downloadId });
+            }, 2000);
         }
     });
 }
