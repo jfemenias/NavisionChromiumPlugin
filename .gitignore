@@ -1,0 +1,22 @@
+# Chrome Extension files
+*.crx
+*.pem
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+
+# Node (in case they add it later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git4Nav specific (if any)
+.gemini/
+.agents/
+brain/

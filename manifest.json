@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Jira Data Downloader",
+  "version": "1.0",
+  "description": "Download Jira issue data as JSON or CSV.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "downloads.shelf",
+    "webNavigation",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.atlassian.net/browse/*",
+        "https://*.atlassian.net/jira/software/projects/*/boards/*"
+      ],
+      "js": [
+        "content-script.js"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://*.atlassian.net/*"
+  ]
+}

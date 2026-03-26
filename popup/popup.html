@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jira Downloader</title>
+  <style>
+    :root {
+      --primary: #0052cc;
+      --primary-hover: #0747a6;
+      --bg: #f4f5f7;
+      --text: #172b4d;
+      --button-text: #ffffff;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 16px;
+      width: 280px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .header {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 3px;
+      background-color: var(--primary);
+      color: var(--button-text);
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .button-secondary {
+      background-color: #ebecf0;
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      background-color: #dfe1e6;
+    }
+
+    .footer {
+      font-size: 11px;
+      color: #6b778c;
+      margin-top: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Jira Issue Downloader</div>
+    <button id="downloadJson" class="button">
+      Download JSON
+    </button>
+    <button id="downloadCsv" class="button button-secondary">
+      Download CSV
+    </button>
+    <div class="footer">Open a Jira issue to start</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
